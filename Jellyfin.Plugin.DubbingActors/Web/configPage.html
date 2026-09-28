@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    <div id="DubbingActorsConfigPage" data-role="page" class="page type-interior pluginConfigurationPage dubbing-actors-plugin">
+        <div data-role="content">
+            <div class="content-primary">
+                <div id="dubbingActorsAppRoot"></div>
+            </div>
+        </div>
+
+        <style>
+            .dubbing-actors-plugin .da-header {
+                font-size: 2em;
+                margin-bottom: 20px;
+                color: var(--theme-text-color, #fff);
+            }
+            .dubbing-actors-plugin .da-section {
+                background: var(--theme-background-color, #1f1f1f);
+                padding: 20px;
+                border-radius: 8px;
+                margin-bottom: 20px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+            .dubbing-actors-plugin .da-form-row {
+                margin-bottom: 15px;
+            }
+            .dubbing-actors-plugin label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+            .dubbing-actors-plugin input {
+                width: 100%;
+                padding: 10px;
+                background: var(--theme-background-color, #333);
+                color: var(--theme-text-color, #fff);
+                border: 1px solid #555;
+                border-radius: 4px;
+            }
+            .dubbing-actors-plugin button {
+                padding: 10px 20px;
+                background: var(--theme-primary-color, #00a4dc);
+                color: #fff;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+            .dubbing-actors-plugin button:hover {
+                filter: brightness(1.2);
+            }
+            .dubbing-actors-plugin .da-danger {
+                background: #dc3545;
+            }
+            .dubbing-actors-plugin .da-cache-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 10px;
+            }
+            .dubbing-actors-plugin .da-cache-table th, .dubbing-actors-plugin .da-cache-table td {
+                padding: 10px;
+                border-bottom: 1px solid #444;
+                text-align: left;
+            }
+        </style>
+
+        <script>
+            document.querySelector('.dubbing-actors-plugin').addEventListener('pageshow', function(e) {
+                var page = e.target;
+                var appRoot = page.querySelector('#dubbingActorsAppRoot');
+                
+                if (!window.renderDubbingActorsApp) {
+                    var script = document.createElement('script');
+                    script.type = 'module';
+                    script.src = window.ApiClient.getUrl('DubbingActors/Cache/Script');
+                    script.onload = function() {
+                        if (window.renderDubbingActorsApp) {
+                            window.renderDubbingActorsApp(appRoot);
+                        }
+                    };
+                    document.body.appendChild(script);
+                } else {
+                    window.renderDubbingActorsApp(appRoot);
+                }
+            });
+        </script>
+    </div>
+</body>
+</html>

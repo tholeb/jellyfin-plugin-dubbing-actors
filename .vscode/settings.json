@@ -13,7 +13,7 @@
     // ${env:XDG_DATA_HOME}/jellyfin
     // However ${env:XDG_DATA_HOME} does not work in Visual Studio Code's development container!
     "jellyfinWindowsDataDir": "${env:LOCALAPPDATA}/jellyfin",
-    "jellyfinLinuxDataDir": "$HOME/.local/share/jellyfin",
+    "jellyfinLinuxDataDir": "$HOME/jellyfin/jellyfin-plugin-dubbing-actors/jellyfin/config",
     // The name of the plugin
-    "pluginName": "Jellyfin.Plugin.Template",
+    "pluginName": "Jellyfin.Plugin.DubbingActors",
 }
